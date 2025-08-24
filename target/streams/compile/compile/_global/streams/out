@@ -1,0 +1,272 @@
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:26:21: No Json serializer found for type Seq[models.dto.CategoryResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(categories))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:32:44: No Json serializer found for type models.dto.CategoryResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(category) => Ok(Json.toJson(category))[0m
+[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:42:21: No Json serializer found for type Seq[models.dto.CategoryResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(categories))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:53:26: No Json deserializer found for type models.dto.CategoryCreateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[CategoryCreateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:55:32: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.CategoryCreateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        categoryService.create(createRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:56:54: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(category) => Created(Json.toJson(category))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:57:62: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Left(error) => BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:65:26: No Json deserializer found for type models.dto.CategoryUpdateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[CategoryUpdateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:67:36: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.CategoryUpdateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        categoryService.update(id, updateRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:68:49: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(category) => Ok(Json.toJson(category))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:70:77: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            if (error == "Category not found") NotFound(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/CategoryController.scala:71:49: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            else BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:28:23: No Json serializer found for type Seq[models.dto.ProductWithDetailsResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m        Ok(Json.toJson(products))[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:42:45: No Json serializer found for type models.dto.ProductWithDetailsResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m        case Some(product) => Ok(Json.toJson(product))[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:58:21: No Json serializer found for type Seq[models.dto.ProductResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(products))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:67:21: No Json serializer found for type Seq[models.dto.ProductResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(products))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:76:21: No Json serializer found for type Seq[models.dto.ProductWithDetailsResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(products))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:88:23: No Json serializer found for type Seq[models.dto.ProductResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m        Ok(Json.toJson(products))[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:100:26: No Json deserializer found for type models.dto.ProductCreateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[ProductCreateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:102:31: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.ProductCreateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        productService.create(createRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:103:53: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(product) => Created(Json.toJson(product))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:104:62: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Left(error) => BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:112:26: No Json deserializer found for type models.dto.ProductUpdateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[ProductUpdateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:114:35: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.ProductUpdateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        productService.update(id, updateRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:115:48: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(product) => Ok(Json.toJson(product))[0m
+[0m[[0m[31merror[0m] [0m[0m                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:117:76: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            if (error == "Product not found") NotFound(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/ProductController.scala:118:49: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            else BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:25:21: No Json serializer found for type Seq[models.dto.StockResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(stocks))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:31:41: No Json serializer found for type models.dto.StockResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(stock) => Ok(Json.toJson(stock))[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:38:41: No Json serializer found for type models.dto.StockResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(stock) => Ok(Json.toJson(stock))[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:45:21: No Json serializer found for type Seq[models.dto.LowStockAlert]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(alerts))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:57:21: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(report))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:68:26: No Json deserializer found for type models.dto.StockUpdateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[StockUpdateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:70:45: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.StockUpdateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        stockService.updateStock(productId, updateRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:71:46: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(stock) => Ok(Json.toJson(stock))[0m
+[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:73:76: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            if (error == "Product not found") NotFound(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/StockController.scala:74:49: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            else BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:25:21: No Json serializer found for type Seq[models.dto.SupplierResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(suppliers))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:31:44: No Json serializer found for type models.dto.SupplierResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(supplier) => Ok(Json.toJson(supplier))[0m
+[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:41:21: No Json serializer found for type Seq[models.dto.SupplierResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(suppliers))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:52:26: No Json deserializer found for type models.dto.SupplierCreateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[SupplierCreateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:54:32: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.SupplierCreateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        supplierService.create(createRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:55:54: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(supplier) => Created(Json.toJson(supplier))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:56:62: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Left(error) => BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:64:26: No Json deserializer found for type models.dto.SupplierUpdateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[SupplierUpdateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:66:36: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.SupplierUpdateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        supplierService.update(id, updateRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:67:49: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(supplier) => Ok(Json.toJson(supplier))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:69:77: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            if (error == "Supplier not found") NotFound(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/SupplierController.scala:70:49: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            else BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:25:21: No Json serializer found for type Seq[models.dto.UserResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(users))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:31:40: No Json serializer found for type models.dto.UserResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(user) => Ok(Json.toJson(user))[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:38:21: No Json serializer found for type Seq[models.dto.UserResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(users))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:47:21: No Json serializer found for type Seq[models.dto.UserResponse]. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      Ok(Json.toJson(users))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/security/AuthAction.scala:5:8: object JWTUtil is not a member of package utils[0m
+[0m[[0m[31merror[0m] [0m[0mimport utils.{JWTUtil, JWTPayload}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/security/AuthAction.scala:11:45: not found: type JWTPayload[0m
+[0m[[0m[31merror[0m] [0m[0mcase class AuthenticatedRequest[A](payload: JWTPayload, request: Request[A]) extends WrappedRequest[A](request)[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:59:40: No Json serializer found for type models.dto.UserResponse. Try to implement an implicit Writes or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Some(user) => Ok(Json.toJson(user))[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:65:26: No Json deserializer found for type models.dto.UserCreateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[UserCreateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:67:28: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.UserCreateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        userService.create(createRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:68:50: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(user) => Created(Json.toJson(user))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:69:62: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Left(error) => BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:77:26: No Json deserializer found for type models.dto.UserUpdateRequest. Try to implement an implicit Reads or Format for this type.[0m
+[0m[[0m[31merror[0m] [0m[0m    request.body.validate[UserUpdateRequest] match {[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:79:32: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: models.dto.UserUpdateRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        userService.update(id, updateRequest).map {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:80:45: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m          case Right(user) => Ok(Json.toJson(user))[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:82:73: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            if (error == "User not found") NotFound(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/controllers/UserController.scala:83:49: diverging implicit expansion for type play.api.libs.json.Writes[T1][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m            else BadRequest(Json.obj("error" -> error))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/models/User.scala:21:16: Implicit definition should have explicit type (inferred slick.jdbc.MySQLProfile.BaseColumnType[models.UserRole.UserRole]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val userRoleMapper = MappedColumnType.base[UserRole.UserRole, String]([0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/repositories/UserRepository.scala:28:32: value === is not a member of slick.lifted.Rep[models.UserRole.UserRole][0m
+[0m[[0m[31merror[0m] [0m[0m    db.run(users.filter(_.role === role).result)[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/repositories/UserRepository.scala:28:24: ambiguous implicit values:[0m
+[0m[[0m[31merror[0m] [0m[0m both value BooleanColumnCanBeQueryCondition in object CanBeQueryCondition of type slick.lifted.CanBeQueryCondition[slick.lifted.Rep[Boolean]][0m
+[0m[[0m[31merror[0m] [0m[0m and value BooleanOptionColumnCanBeQueryCondition in object CanBeQueryCondition of type slick.lifted.CanBeQueryCondition[slick.lifted.Rep[Option[Boolean]]][0m
+[0m[[0m[31merror[0m] [0m[0m match expected type slick.lifted.CanBeQueryCondition[Nothing][0m
+[0m[[0m[31merror[0m] [0m[0m    db.run(users.filter(_.role === role).result)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/security/AuthAction.scala:15:12: not found: type JWTUtil[0m
+[0m[[0m[31merror[0m] [0m[0m  jwtUtil: JWTUtil,[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/services/CategoryService.scala:5:8: object CategoryRepository is not a member of package repositories[0m
+[0m[[0m[31merror[0m] [0m[0mimport repositories.CategoryRepository[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/app/services/CategoryService.scala:11:23: not found: type CategoryRepository[0m
+[0m[[0m[31merror[0m] [0m[0m  categoryRepository: CategoryRepository[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:47:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:47:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:47:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:7:1: type AuthController is not a member of package controllers[0m
+[0m[[0m[31merror[0m] [0m[0mPOST    /api/auth/login                    controllers.AuthController.login()[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:7:1: type AuthController is not a member of package controllers[0m
+[0m[[0m[31merror[0m] [0m[0mPOST    /api/auth/login                    controllers.AuthController.login()[0m
+[0m[[0m[31merror[0m] [0m[0m/var/www/html/ai-project/play-angular-scala/conf/routes:47:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m76 errors found[0m
