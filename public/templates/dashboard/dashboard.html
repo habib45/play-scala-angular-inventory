@@ -1,0 +1,192 @@
+<div class="fade-in">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0">Dashboard</h1>
+            <p class="text-muted mb-0">Welcome back, {{dashboard.currentUser.username}}!</p>
+        </div>
+        <button class="btn btn-outline-primary" ng-click="dashboard.refresh()" ng-disabled="dashboard.loading">
+            <i class="fas fa-sync-alt" ng-class="{'fa-spin': dashboard.loading}"></i> Refresh
+        </button>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Products</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard.stats.totalProducts}}</div>
+                        </div>
+                        <div class="fa-2x text-gray-300">
+                            <i class="fas fa-box"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card dashboard-card success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Categories</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard.stats.totalCategories}}</div>
+                        </div>
+                        <div class="fa-2x text-gray-300">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card dashboard-card info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Suppliers</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard.stats.totalSuppliers}}</div>
+                        </div>
+                        <div class="fa-2x text-gray-300">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card dashboard-card warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Stock Value</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard.formatCurrency(dashboard.stats.totalStockValue)}}</div>
+                        </div>
+                        <div class="fa-2x text-gray-300">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary">Stock Status Overview</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="stockStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Products by Category</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Low Stock Alerts and Recent Products -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <h6 class="m-0 font-weight-bold text-danger">Low Stock Alerts</h6>
+                    <span class="badge bg-danger ms-2" ng-if="dashboard.stats.lowStockCount > 0">
+                        {{dashboard.stats.lowStockCount}}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div ng-if="dashboard.lowStockAlerts.length === 0" class="text-center text-muted py-3">
+                        <i class="fas fa-check-circle fa-2x mb-2"></i>
+                        <p class="mb-0">All products are well stocked!</p>
+                    </div>
+                    
+                    <div ng-if="dashboard.lowStockAlerts.length > 0">
+                        <div class="alert alert-warning" ng-repeat="alert in dashboard.lowStockAlerts | limitTo:5">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{alert.productName}}</strong>
+                                    <br>
+                                    <small class="text-muted">
+                                        Current: {{alert.currentStock}} | Minimum: {{alert.minimumStock}}
+                                    </small>
+                                </div>
+                                <span class="badge bg-warning">Low Stock</span>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3" ng-if="dashboard.lowStockAlerts.length > 5">
+                            <a href="#/stock" class="btn btn-outline-primary btn-sm">
+                                View All Alerts ({{dashboard.lowStockAlerts.length}})
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Products</h6>
+                </div>
+                <div class="card-body">
+                    <div ng-if="dashboard.recentProducts.length === 0" class="text-center text-muted py-3">
+                        <i class="fas fa-box-open fa-2x mb-2"></i>
+                        <p class="mb-0">No products found</p>
+                    </div>
+                    
+                    <div ng-if="dashboard.recentProducts.length > 0">
+                        <div class="d-flex align-items-center py-2 border-bottom" ng-repeat="product in dashboard.recentProducts">
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">{{product.name}}</div>
+                                <small class="text-muted">{{product.categoryName}} • {{product.supplierName}}</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold">{{dashboard.formatCurrency(product.price)}}</div>
+                                <span class="badge" ng-class="'bg-' + dashboard.getStockStatusClass(product.stockQuantity, product.minimumStock)">
+                                    {{dashboard.getStockStatusText(product.stockQuantity, product.minimumStock)}}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a href="#/products" class="btn btn-outline-primary btn-sm">
+                                View All Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div ng-if="dashboard.loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-muted">Loading dashboard data...</p>
+    </div>
+</div>

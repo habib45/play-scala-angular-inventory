@@ -1,0 +1,70 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# Authentication routes
+POST    /api/auth/login                    controllers.AuthController.login()
+POST    /api/auth/change-password          controllers.AuthController.changePassword()
+GET     /api/auth/validate                 controllers.AuthController.validateToken()
+POST    /api/auth/logout                   controllers.AuthController.logout()
+
+# User management routes (Admin only)
+GET     /api/users                         controllers.UserController.findAll(limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/users/current                 controllers.UserController.getCurrentUser()
+GET     /api/users/count                   controllers.UserController.count()
+GET     /api/users/search                  controllers.UserController.search(q: String, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/users/role/:role              controllers.UserController.findByRole(role: String)
+GET     /api/users/:id                     controllers.UserController.findById(id: Long)
+POST    /api/users                         controllers.UserController.create()
+PUT     /api/users/:id                     controllers.UserController.update(id: Long)
+DELETE  /api/users/:id                     controllers.UserController.delete(id: Long)
+
+# Category routes
+GET     /api/categories                    controllers.CategoryController.findAll(limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/categories/count              controllers.CategoryController.count()
+GET     /api/categories/search             controllers.CategoryController.search(q: String, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/categories/:id                controllers.CategoryController.findById(id: Long)
+POST    /api/categories                    controllers.CategoryController.create()
+PUT     /api/categories/:id                controllers.CategoryController.update(id: Long)
+DELETE  /api/categories/:id                controllers.CategoryController.delete(id: Long)
+
+# Supplier routes
+GET     /api/suppliers                     controllers.SupplierController.findAll(limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/suppliers/count               controllers.SupplierController.count()
+GET     /api/suppliers/search              controllers.SupplierController.search(q: String, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/suppliers/:id                 controllers.SupplierController.findById(id: Long)
+POST    /api/suppliers                     controllers.SupplierController.create()
+PUT     /api/suppliers/:id                 controllers.SupplierController.update(id: Long)
+DELETE  /api/suppliers/:id                 controllers.SupplierController.delete(id: Long)
+
+# Product routes
+GET     /api/products                      controllers.ProductController.findAll(limit: Option[Int] ?= None, offset: Option[Int] ?= None, withDetails: Option[Boolean] ?= None)
+GET     /api/products/count                controllers.ProductController.count()
+GET     /api/products/search               controllers.ProductController.search(q: String, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/products/category/:categoryId controllers.ProductController.findByCategory(categoryId: Long, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/products/supplier/:supplierId controllers.ProductController.findBySupplier(supplierId: Long, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/products/:id                  controllers.ProductController.findById(id: Long, withDetails: Option[Boolean] ?= None)
+POST    /api/products                      controllers.ProductController.create()
+PUT     /api/products/:id                  controllers.ProductController.update(id: Long)
+DELETE  /api/products/:id                  controllers.ProductController.delete(id: Long)
+
+# Stock routes
+GET     /api/stock                         controllers.StockController.findAll(limit: Option[Int] ?= None, offset: Option[Int] ?= None)
+GET     /api/stock/count                   controllers.StockController.count()
+GET     /api/stock/low-stock               controllers.StockController.findLowStock()
+GET     /api/stock/total-value             controllers.StockController.getTotalStockValue()
+GET     /api/stock/report                  controllers.StockController.getStockReport()
+GET     /api/stock/product/:productId      controllers.StockController.findByProductId(productId: Long)
+GET     /api/stock/:id                     controllers.StockController.findById(id: Long)
+PUT     /api/stock/product/:productId      controllers.StockController.updateStock(productId: Long)
+POST    /api/stock/adjust/:productId       controllers.StockController.adjustStock(productId: Long)
+POST    /api/stock/transfer                controllers.StockController.transferStock()
+
+# Frontend routes (serve AngularJS app)
+GET     /                                  controllers.Assets.at(path="/public", file="index.html")
+GET     /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /public/*file                      controllers.Assets.at(path="/public", file)
