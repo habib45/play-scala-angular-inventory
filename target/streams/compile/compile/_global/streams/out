@@ -1,0 +1,9 @@
+[0m[[0m[31merror[0m] [0m[0m/workspace/conf/routes:49:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/workspace/conf/routes:49:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/workspace/conf/routes:49:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0m/workspace/conf/routes:49:1: No QueryString binder found for type BigDecimal. Try to implement an implicit QueryStringBindable for this type.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /api/products/price-range          controllers.ProductController.filterByPriceRange(minPrice: BigDecimal, maxPrice: BigDecimal, limit: Option[Int] ?= None, offset: Option[Int] ?= None)[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m

@@ -23,7 +23,7 @@ class UserService @Inject()(
 
   def findByRole(role: String): Future[Seq[UserResponse]] = {
     try {
-      val userRole = UserRole.withName(role.toUpperCase)
+      val userRole = models.UserRole.withName(role.toUpperCase)
       userRepository.findByRole(userRole).map(_.map(UserDTO.fromModel))
     } catch {
       case _: NoSuchElementException => Future.successful(Seq.empty)
@@ -36,6 +36,19 @@ class UserService @Inject()(
 
   def count(): Future[Int] = {
     userRepository.count()
+  }
+
+  def authenticate(username: String, password: String): Future[Option[User]] = {
+    userRepository.findByUsername(username).flatMap {
+      case Some(user) =>
+        if (passwordUtil.checkPassword(password, user.passwordHash)) {
+          Future.successful(Some(user))
+        } else {
+          Future.successful(None)
+        }
+      case None =>
+        Future.successful(None)
+    }
   }
 
   def create(request: UserCreateRequest): Future[Either[String, UserResponse]] = {
@@ -82,8 +95,8 @@ class UserService @Inject()(
     userRepository.findById(id).flatMap {
       case Some(user) =>
         // Prevent deletion of the last admin user
-        if (user.role == UserRole.ADMIN) {
-          userRepository.findByRole(UserRole.ADMIN).flatMap { admins =>
+        if (user.role == models.UserRole.ADMIN) {
+          userRepository.findByRole(models.UserRole.ADMIN).flatMap { admins =>
             if (admins.length <= 1) {
               Future.successful(Left("Cannot delete the last admin user"))
             } else {
@@ -116,7 +129,7 @@ class UserService @Inject()(
           Some(passwordErrors.mkString("; "))
         } else {
           try {
-            UserRole.withName(role.toUpperCase)
+            models.UserRole.withName(role.toUpperCase)
             None
           } catch {
             case _: NoSuchElementException => Some("Invalid role. Must be ADMIN, MANAGER, or STAFF")
@@ -136,7 +149,7 @@ class UserService @Inject()(
         Some("Username can only contain letters, numbers, dots, hyphens, and underscores")
       } else {
         try {
-          UserRole.withName(role.toUpperCase)
+          models.UserRole.withName(role.toUpperCase)
           None
         } catch {
           case _: NoSuchElementException => Some("Invalid role. Must be ADMIN, MANAGER, or STAFF")

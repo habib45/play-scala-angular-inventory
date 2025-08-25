@@ -2,6 +2,7 @@ package models.dto
 
 import play.api.libs.json._
 import models.{Product, ProductWithDetails}
+import utils.JsonFormats._
 import java.time.LocalDateTime
 
 case class ProductCreateRequest(

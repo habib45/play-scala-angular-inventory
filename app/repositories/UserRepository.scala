@@ -1,6 +1,7 @@
 package repositories
 
 import models.{User, Users, UserRole}
+import models.UserRoleMapper._
 import slick.jdbc.MySQLProfile.api._
 import scala.concurrent.{ExecutionContext, Future}
 import javax.inject.{Inject, Singleton}
@@ -24,7 +25,7 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(implici
     db.run(users.filter(_.username === username).result.headOption)
   }
 
-  def findByRole(role: UserRole.UserRole): Future[Seq[User]] = {
+  def findByRole(role: models.UserRole.UserRole): Future[Seq[User]] = {
     db.run(users.filter(_.role === role).result)
   }
 

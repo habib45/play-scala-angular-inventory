@@ -24,4 +24,4 @@ libraryDependencies ++= Seq(
 //TwirlKeys.templateImports += "com.example.controllers._"
 
 // Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
+play.sbt.routes.RoutesKeys.routesImport += "binders._"
