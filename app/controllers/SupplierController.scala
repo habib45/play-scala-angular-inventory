@@ -6,6 +6,7 @@ import services.SupplierService
 import models.dto.{SupplierCreateRequest, SupplierUpdateRequest}
 import models.UserRole
 import security.{AuthenticatedRequest, AuthAction, RoleAction}
+import utils.GlobalJsonFormats._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -48,7 +49,7 @@ class SupplierController @Inject()(
     }
   }
 
-  def create(): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def create(): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[SupplierCreateRequest] match {
       case JsSuccess(createRequest, _) =>
         supplierService.create(createRequest).map {
@@ -60,7 +61,7 @@ class SupplierController @Inject()(
     }
   }
 
-  def update(id: Long): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def update(id: Long): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[SupplierUpdateRequest] match {
       case JsSuccess(updateRequest, _) =>
         supplierService.update(id, updateRequest).map {
@@ -74,7 +75,7 @@ class SupplierController @Inject()(
     }
   }
 
-  def delete(id: Long): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def delete(id: Long): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     supplierService.delete(id).map {
       case Right(message) => Ok(Json.obj("message" -> message))
       case Left(error) => 

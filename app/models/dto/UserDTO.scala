@@ -2,6 +2,7 @@ package models.dto
 
 import play.api.libs.json._
 import models.{User, UserRole}
+import utils.JsonFormats._
 import java.time.LocalDateTime
 
 case class UserCreateRequest(
@@ -67,7 +68,7 @@ object UserDTO {
   def updateModel(user: User, request: UserUpdateRequest): User = {
     user.copy(
       username = request.username,
-      role = UserRole.withName(request.role.toUpperCase),
+                  role = models.UserRole.withName(request.role.toUpperCase),
       updatedAt = LocalDateTime.now()
     )
   }

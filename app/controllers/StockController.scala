@@ -3,9 +3,10 @@ package controllers
 import play.api.mvc._
 import play.api.libs.json._
 import services.StockService
-import models.dto.StockUpdateRequest
+import models.dto.{StockUpdateRequest, StockDTO}
 import models.UserRole
 import security.{AuthenticatedRequest, AuthAction, RoleAction}
+import utils.GlobalJsonFormats._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -54,7 +55,7 @@ class StockController @Inject()(
 
   def getStockReport(): Action[AnyContent] = authAction.async { _: AuthenticatedRequest[AnyContent] =>
     stockService.getStockReport().map { report =>
-      Ok(Json.toJson(report))
+      Ok(Json.toJson(StockDTO.fromReportMap(report)))
     }
   }
 
@@ -64,7 +65,7 @@ class StockController @Inject()(
     }
   }
 
-  def updateStock(productId: Long): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def updateStock(productId: Long): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[StockUpdateRequest] match {
       case JsSuccess(updateRequest, _) =>
         stockService.updateStock(productId, updateRequest).map {
@@ -78,7 +79,7 @@ class StockController @Inject()(
     }
   }
 
-  def adjustStock(productId: Long): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def adjustStock(productId: Long): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     (request.body \ "adjustment").validate[Int] match {
       case JsSuccess(adjustment, _) =>
         val reason = (request.body \ "reason").asOpt[String].getOrElse("")
@@ -93,7 +94,7 @@ class StockController @Inject()(
     }
   }
 
-  def transferStock(): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def transferStock(): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     val fromProductIdOpt = (request.body \ "fromProductId").validate[Long].asOpt
     val toProductIdOpt = (request.body \ "toProductId").validate[Long].asOpt
     val quantityOpt = (request.body \ "quantity").validate[Int].asOpt

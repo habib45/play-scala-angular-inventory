@@ -2,6 +2,7 @@ package models.dto
 
 import play.api.libs.json._
 import models.Category
+import utils.JsonFormats._
 import java.time.LocalDateTime
 
 case class CategoryCreateRequest(name: String)

@@ -6,6 +6,7 @@ import services.CategoryService
 import models.dto.{CategoryCreateRequest, CategoryUpdateRequest}
 import models.UserRole
 import security.{AuthenticatedRequest, AuthAction, RoleAction}
+import utils.GlobalJsonFormats._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Try, Success, Failure}
@@ -49,7 +50,7 @@ class CategoryController @Inject()(
     }
   }
 
-  def create(): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def create(): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[CategoryCreateRequest] match {
       case JsSuccess(createRequest, _) =>
         categoryService.create(createRequest).map {
@@ -61,7 +62,7 @@ class CategoryController @Inject()(
     }
   }
 
-  def update(id: Long): Action[JsValue] = roleAction(UserRole.ADMIN, UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def update(id: Long): Action[JsValue] = roleAction(models.UserRole.ADMIN, models.UserRole.MANAGER).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[CategoryUpdateRequest] match {
       case JsSuccess(updateRequest, _) =>
         categoryService.update(id, updateRequest).map {
@@ -75,7 +76,7 @@ class CategoryController @Inject()(
     }
   }
 
-  def delete(id: Long): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def delete(id: Long): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     categoryService.delete(id).map {
       case Right(message) => Ok(Json.obj("message" -> message))
       case Left(error) => 

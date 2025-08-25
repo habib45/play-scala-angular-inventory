@@ -3,7 +3,7 @@ package security
 import play.api.mvc._
 import play.api.libs.json.Json
 import utils.{JWTUtil, JWTPayload}
-import models.UserRole
+import models.UserRole.UserRole
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Success, Failure}
@@ -12,7 +12,6 @@ case class AuthenticatedRequest[A](payload: JWTPayload, request: Request[A]) ext
 
 @Singleton
 class AuthAction @Inject()(
-  jwtUtil: JWTUtil,
   parser: BodyParsers.Default
 )(implicit ec: ExecutionContext) extends ActionBuilder[AuthenticatedRequest, AnyContent] {
 
@@ -22,9 +21,9 @@ class AuthAction @Inject()(
   override def invokeBlock[A](request: Request[A], block: AuthenticatedRequest[A] => Future[Result]): Future[Result] = {
     request.headers.get("Authorization") match {
       case Some(authHeader) =>
-        jwtUtil.extractToken(authHeader) match {
+        JWTUtil.extractToken(authHeader) match {
           case Some(token) =>
-            jwtUtil.validateToken(token) match {
+            JWTUtil.validateToken(token) match {
               case Success(payload) =>
                 block(AuthenticatedRequest(payload, request))
               case Failure(_) =>
@@ -44,7 +43,7 @@ class RoleAction @Inject()(
   authAction: AuthAction
 )(implicit ec: ExecutionContext) {
 
-  def apply(allowedRoles: UserRole.UserRole*): ActionBuilder[AuthenticatedRequest, AnyContent] = {
+  def apply(allowedRoles: UserRole*): ActionBuilder[AuthenticatedRequest, AnyContent] = {
     new ActionBuilder[AuthenticatedRequest, AnyContent] {
       override def executionContext: ExecutionContext = ec
       override def parser: BodyParser[AnyContent] = authAction.parser

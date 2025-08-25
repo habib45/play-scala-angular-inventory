@@ -6,6 +6,7 @@ import services.UserService
 import models.dto.{UserCreateRequest, UserUpdateRequest}
 import models.UserRole
 import security.{AuthenticatedRequest, AuthAction, RoleAction}
+import utils.GlobalJsonFormats._
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -17,7 +18,7 @@ class UserController @Inject()(
   roleAction: RoleAction
 )(implicit ec: ExecutionContext) extends AbstractController(cc) {
 
-  def findAll(limit: Option[Int], offset: Option[Int]): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def findAll(limit: Option[Int], offset: Option[Int]): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     val safeLimit = limit.getOrElse(100).min(1000).max(1)
     val safeOffset = offset.getOrElse(0).max(0)
     
@@ -26,20 +27,20 @@ class UserController @Inject()(
     }
   }
 
-  def findById(id: Long): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def findById(id: Long): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     userService.findById(id).map {
       case Some(user) => Ok(Json.toJson(user))
       case None => NotFound(Json.obj("error" -> "User not found"))
     }
   }
 
-  def findByRole(role: String): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def findByRole(role: String): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     userService.findByRole(role).map { users =>
       Ok(Json.toJson(users))
     }
   }
 
-  def search(q: String, limit: Option[Int], offset: Option[Int]): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def search(q: String, limit: Option[Int], offset: Option[Int]): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     val safeLimit = limit.getOrElse(100).min(1000).max(1)
     val safeOffset = offset.getOrElse(0).max(0)
     
@@ -48,7 +49,7 @@ class UserController @Inject()(
     }
   }
 
-  def count(): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def count(): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     userService.count().map { count =>
       Ok(Json.obj("count" -> count))
     }
@@ -61,7 +62,7 @@ class UserController @Inject()(
     }
   }
 
-  def create(): Action[JsValue] = roleAction(UserRole.ADMIN).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def create(): Action[JsValue] = roleAction(models.UserRole.ADMIN).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[UserCreateRequest] match {
       case JsSuccess(createRequest, _) =>
         userService.create(createRequest).map {
@@ -73,7 +74,7 @@ class UserController @Inject()(
     }
   }
 
-  def update(id: Long): Action[JsValue] = roleAction(UserRole.ADMIN).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
+  def update(id: Long): Action[JsValue] = roleAction(models.UserRole.ADMIN).async(parse.json) { request: AuthenticatedRequest[JsValue] =>
     request.body.validate[UserUpdateRequest] match {
       case JsSuccess(updateRequest, _) =>
         userService.update(id, updateRequest).map {
@@ -87,7 +88,7 @@ class UserController @Inject()(
     }
   }
 
-  def delete(id: Long): Action[AnyContent] = roleAction(UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
+  def delete(id: Long): Action[AnyContent] = roleAction(models.UserRole.ADMIN).async { _: AuthenticatedRequest[AnyContent] =>
     userService.delete(id).map {
       case Right(message) => Ok(Json.obj("message" -> message))
       case Left(error) => 

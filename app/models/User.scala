@@ -3,11 +3,6 @@ package models
 import slick.jdbc.MySQLProfile.api._
 import java.time.LocalDateTime
 
-object UserRole extends Enumeration {
-  type UserRole = Value
-  val ADMIN, MANAGER, STAFF = Value
-}
-
 case class User(
   id: Option[Long] = None,
   username: String,
@@ -18,10 +13,7 @@ case class User(
 )
 
 class Users(tag: Tag) extends Table[User](tag, "users") {
-  implicit val userRoleMapper = MappedColumnType.base[UserRole.UserRole, String](
-    e => e.toString,
-    s => UserRole.withName(s)
-  )
+  import UserRoleMapper._
 
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
   def username = column[String]("username", O.Unique)
